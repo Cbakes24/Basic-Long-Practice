@@ -41,8 +41,8 @@ Request components:
 
 Response components:
 - Status code: 404
-- Headers: text html
-- Body: text html
+- Headers: Content-type: text/html
+- Body: html page
 
 ### Ask for the products list page
 
@@ -54,8 +54,8 @@ Request components:
 
 Response components:
 - Status code: 200 OK
-- Headers: text html
-- Body: text html
+- Headers: Content-type: text/html
+- Body: list of product names
 
 ### Ask for the product detail page
 
@@ -71,27 +71,27 @@ Here's an example product on the server:
 
 Request components:
 - Method: GET
-- URL: /products/1
+- URL: /products/:productsId
+- Headers: none
+- Body: none
+
+Response components:
+- Status code: 200
+- Headers: content-type: text/html
+- Body: html page of product detail
+
+### Ask for the create new product page
+
+Request components:
+- Method: GET
+- URL: /products/new
 - Headers: none
 - Body: none
 
 Response components:
 - Status code: 200
 - Headers: text html
-- Body: text html
-
-### Ask for the create new product page
-
-Request components:
-- Method:
-- URL:
-- Headers:
-- Body:
-
-Response components:
-- Status code:
-- Headers:
-- Body:
+- Body: html page that contains the form product
 
 ### Submit a new product
 
@@ -117,58 +117,58 @@ Here are the categories on the server:
 in the network tab as "payload".
 
 Request components:
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: POST
+- URL: /products (POST not GET)
+- Headers: Content-Type: application/x-www-form-urlencoded
+- Body: name, description, price, categories
 
 Response components:
-- Status code:
-- Headers:
-- Body:
+- Status code: 302
+- Headers: Location: products/:productId
+- Body: none
 
 ### Ask for the edit product page
 
 Request components:
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /products/4 (product that we already made) /edit
+- Headers: none
+- Body: none
 
 Response components:
-- Status code:
-- Headers:
-- Body:
+- Status code: 200
+- Headers: html text
+- Body: html page with form for editing specific product
 
 ### Submit an edit for an existing product
 
 After successful submission, user should be looking at the product detail page.
 
 Request components:
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: POST
+- URL: products/4
+- Headers: Content-Type: application/x-www-form-urlencoded
+- Body:  name, description, price, categories
 
 Response components:
-- Status code:
-- Headers:
-- Body:
+- Status code: 302
+- Headers: Location: products/:productId (it must redirect so the page edits) -- reason we have redirect is the user experience like clicking on submitting a post and it actually submitting -- redirecting seamlessly to make sure the submit when through. When your redirecting you have to know where its going.
+- Body: none
 
 ### Submit a delete for an existing product
 
 After successful submission, user should be looking at the products list page.
 
 Request components:
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: POST
+- URL: /products/:productId(4)/delete
+- Headers: none
+- Body: none
 
 Response components:
-- Status code:
-- Headers:
-- Body:
+- Status code: 302
+- Headers: /products
+- Body: none
 
 ### Submit a new review for a product
 
